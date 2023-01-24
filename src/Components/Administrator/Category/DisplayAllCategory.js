@@ -2,7 +2,7 @@ import MaterialTable from '@material-table/core'
 import { useState,useEffect } from 'react'
 import { useStyles } from './DisplayAllCategoryCss'
 
-import { getData,postData,ServerURL } from '../../Services/FetchNodeServices'
+import { getData,isValidAuth,postData,ServerURL } from '../../Services/FetchNodeServices'
 import { Avatar,Button,TextField,Grid} from '@material-ui/core'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -28,10 +28,22 @@ export default function DisplayAllCategory(props){
     setCategory(result.data)
 
   } 
-  
-  useEffect(function(){
 
-    fetchAllCategory()
+  const checkAuth=async()=>{
+    var result=await isValidAuth()
+  
+    if (result.auth)
+    {
+      fetchAllCategory()
+    }
+    else{
+      alert(result.message)
+    }
+  }
+  
+  useEffect(function() {
+    checkAuth()
+    
   },[])
 
   const handleSetDataForDialog=(rowData)=>{

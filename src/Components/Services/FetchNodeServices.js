@@ -29,5 +29,19 @@ const getData=async(url)=>{
     }
      
     }
+
+    const isValidAuth=async()=>{
+      try{
+        alert (localStorage.getItem('token'))
+        var response=await fetch(`${ServerURL}/admin/isUserAuth`,{
+          headers:{'authorization':localStorage.getItem('token')}
+        })
+        var result =await response.json()
+        return(result)
+
+      }catch(e){
+        return(null)
+      } 
+    }
     
-    export {ServerURL,postData,getData}
+    export {ServerURL,postData,getData,isValidAuth}

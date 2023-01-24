@@ -20,8 +20,7 @@ export default function VehicleDetails(props){
        var fuel=Object.values(ids?.fuel?ids.fuel:{} )
        var segment_str=''
        var i
-        ////model
-
+        ////model   
        if(models.length>0)
        {
 

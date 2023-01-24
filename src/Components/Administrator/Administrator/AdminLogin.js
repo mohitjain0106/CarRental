@@ -41,9 +41,12 @@ export default function AdminLogin() {
   
     const handleSubmit =async () => {
         var body={emailid:emailid,password:password}
-        var response= await postData('admin/check_Admin_login',body)
+        var response= await postData('admin/check_admin_login',body)
+        alert(JSON.stringify(response))
         if(response.status)
         {
+          alert(JSON.stringify(response.token))
+          localStorage.setItem("token",response.token)
            navigate("/dashboard") 
         }
         else
